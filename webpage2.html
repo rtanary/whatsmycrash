@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+
+body {
+  background: #05daff;
+  margin: 0;
+}
+
+.header {
+  color: #05daff;
+  background-color: #0f0f0f;
+  padding: 20px;
+  text-align: center;
+}
+
+
+
+table {
+table-layout: fixed;
+width: 180px; 
+font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 50%;
+}
+
+td, th {
+text-align: left;
+padding: 8px;
+}
+
+tr:hover{background-color: #f5f5f5;}
+td {white-space:pre}
+
+
+.button {
+  background-color:  #0f0f0f;
+  border: none;
+  color:#05daff;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 1px;
+  cursor: pointer;
+}
+
+</style>
+
+<body>
+
+<div class="header">
+  <h1>Header</h1>
+</div>
+
+
+<table>
+    <tr>
+        <th>Car Brand</th>
+        <th>Speed</th>
+        <th>Serverness</th>
+        <th>Location</th>
+    </tr>
+</table>
+    
+<table id="myTable">
+    
+</table>
+
+<script>
+// need a method to import json file
+var myobj = {  
+   "collision":[  
+      {  
+         "timestamp":1561262763,
+         "acceleration":"14",
+         "result":1
+      },
+      {  
+         "timestamp":1561262763,
+         "acceleration":"15",
+         "result":1
+      },
+      {  
+         "timestamp":1561262763,
+         "acceleration":"13",
+         "result":1
+      },
+      {  
+         "timestamp":1561262763,
+         "acceleration":"13",
+         "result":1
+      },
+      {  
+         "timestamp":1561262763,
+         "acceleration":"9",
+         "result":1
+      }
+   ]
+}
+
+</script>
+
+<table id="myTable">
+    
+</table>
+
+<button class = "button" onclick="myfill()">Refresh
+<!-- json file should be checked for data update upon refresh-->
+
+  <script>
+    function myfill(){
+      var y , z ,a , b , c
+      y = myobj.collision;
+      var i;
+        for (i = 0; i < y.length; i++) {
+          z = myobj.collision[i].acceleration;
+          a = myobj.collision[i].timestamp;
+          b = myobj.collision[i].result;
+          a = a.toString();
+          if (b == 1){
+              c = "collision";
+          }
+//replace "new cell" with corresponding information
+          var table = document.getElementById("myTable");
+          var row = table.insertRow(0);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          cell1.innerHTML = a;
+          cell2.innerHTML = z;
+          cell3.innerHTML = c;
+          cell4.innerHTML = "unknown";                
+        }
+
+
+
+      }
+  </script>
+</button>
+
+  
+
+
+</body>
+</html>
