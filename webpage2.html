@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="jquery-3.4.1.min.js"></script>
+    </head>
 <style>
 
 
@@ -112,9 +115,33 @@ var myobj = {
 
   <script>
     function myfill(){
-      var y , z ,a , b , c
-      y = myobj.collision;
+      var json = $.getJSON("data.json")
+      var userdata = JSON.parse(json)
+
       var i;
+      var table = document.getElementById("myTable");
+
+      for (i=0;i<json.length;i++){
+        var row = table.insertRow(i);
+        var j;
+        for (j=0;j<3;j++)
+        {
+          cell = row.insertCell(j);
+          switch(j){
+            case 0:
+              cell.innerHTML = json.acceleration;
+              break;
+            case 1:
+              cell.innerHTML = Date.now().toLocaleString();
+              break;
+            case 2:
+              cell.innerHTML = json.result;
+              break;
+          }
+        }
+      }
+      /*var y , z ,a , b , c
+      y = myobj.collision;
         for (i = 0; i < y.length; i++) {
           z = myobj.collision[i].acceleration;
           a = myobj.collision[i].timestamp;
@@ -134,7 +161,7 @@ var myobj = {
           cell2.innerHTML = z;
           cell3.innerHTML = c;
           cell4.innerHTML = "unknown";                
-        }
+        }*/
 
 
 
